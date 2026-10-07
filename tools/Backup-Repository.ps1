@@ -53,7 +53,7 @@ $bundleName = "NBA-The-Association-$timestamp-$shortHead.bundle"
 $bundlePath = Join-Path $destinationPath $bundleName
 $checksumPath = "$bundlePath.sha256"
 
-if (Test-Path -LiteralPath $bundlePath -PathType Leaf -or Test-Path -LiteralPath $checksumPath -PathType Leaf) {
+if ((Test-Path -LiteralPath $bundlePath -PathType Leaf) -or (Test-Path -LiteralPath $checksumPath -PathType Leaf)) {
     throw "Refusing to overwrite an existing backup: $bundlePath"
 }
 
