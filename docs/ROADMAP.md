@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-Vision, architecture boundaries, data principles, roadmap, questions, and decisions are complete. Standalone onboarding and isolated GitHub recovery are verified. Independent backup classification, policy, Git-bundle tooling, and local restore proof are complete; deploying and verifying an encrypted off-machine destination remains owner-dependent. Unity bootstrap remains intentionally deferred until its prerequisites and a sufficiently developed headless foundation are approved.
+Vision, architecture boundaries, data principles, roadmap, questions, and decisions are complete. Standalone onboarding and isolated GitHub recovery are verified. Independent backup classification, policy, Git-bundle tooling, and local restore proof are complete; deploying an encrypted off-machine destination remains owner-dependent. Foundation C now has researched Unity/bootstrap recommendations, but Unity remains deferred until owner approval and a disposable .NET Standard 2.1 compatibility spike pass.
 
 ## Phase 1 — Data Foundation (complete for current needs)
 

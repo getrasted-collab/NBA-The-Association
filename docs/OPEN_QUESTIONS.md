@@ -25,7 +25,7 @@ Answered choices should be recorded in `DECISIONS.md`; do not infer answers mere
 
 - **Resolved — ADR-014:** Slice 01 targets `net10.0`.
 - **Resolved — ADR-017:** Headless league/calendar workflows use a Core-only Application layer; `LeagueWorld` remains immutable and `LeagueSession` owns runtime date.
-- **IMPORTANT BUT NON-BLOCKING:** What exact future assembly/package boundary will connect the standalone core to Unity? Needed before Unity work, not before logical modeling.
+- **Recommended; spike required before Unity creation:** Multi-target Core/Application/future Simulation and consume reproducibly built .NET Standard 2.1 managed plug-ins through a separate Unity adapter assembly. `UNITY_FOUNDATION_DECISIONS.md` documents the boundary and the current `DateOnly` compatibility risk.
 - **IMPORTANT BUT NON-BLOCKING:** What command/query and domain-event conventions are appropriate without overengineering?
 - **IMPORTANT BUT NON-BLOCKING:** What deterministic RNG and stream-partitioning strategy will generated/simulated data use?
 - **LATER:** Is ECS or another data-oriented execution model warranted after profiling?
@@ -111,14 +111,13 @@ These do not block Slice 01 because those entities are excluded.
 
 ## Unity, UI, and presentation
 
-- **BLOCKING before Unity creation:** Which exact Unity LTS editor revision is approved after a current compatibility/package review?
-- **BLOCKING before Unity creation:** What are the initial target platforms and minimum hardware/OS direction?
-- **BLOCKING before Unity creation:** What company/studio name, product display name, and reverse-domain application identifier should Unity use?
-- **BLOCKING before Unity creation:** Which rendering pipeline best balances the intended visual ceiling with approved platform breadth—URP or HDRP?
-- **BLOCKING before Unity creation:** Which input devices must be first-class at bootstrap, and is Unity Input System approved?
-- **BLOCKING before Unity creation:** How will the `net10.0` standalone projects expose a Unity-compatible assembly/API boundary without duplicating domain logic?
-- **IMPORTANT BUT NON-BLOCKING:** What frame-rate, VSync, window-mode, resolution, and aspect-ratio targets apply to the primary platform?
-- **IMPORTANT BUT NON-BLOCKING:** Which languages/localization package and key-authoring workflow are required for the first playable?
+- **Recommended in `UNITY_FOUNDATION_DECISIONS.md`; awaiting owner approval:** Unity 6.3 LTS/current safe 6000.3 patch, Windows x64, HDRP, Input System, 60 FPS/VSync baseline, responsive desktop layouts, and UI Toolkit-first.
+- **BLOCKING before Unity creation:** What durable company/studio name and reverse-domain identifier root should Unity use? Product/folder names are recommended as `NBA The Association` / `NBATheAssociation`.
+- **BLOCKING before Unity creation:** Does the owner approve HDRP's high-end desktop focus over URP's broader hardware/platform reach? Recommendation: HDRP.
+- **BLOCKING before Unity creation:** Does the owner authorize the disposable compatibility spike described in `UNITY_FOUNDATION_DECISIONS.md`?
+- **BLOCKING integration issue discovered:** Unity's supported portable plug-in profile is .NET Standard 2.1, while current projects target `net10.0` and Core uses `DateOnly`. Prove multi-targeting in the spike; if required, separately plan a project-owned civil-date value without changing day-only semantics or duplicating domain code.
+- **IMPORTANT BUT NON-BLOCKING:** Final consumer Windows minimum hardware/OS, quality tiers, and shipping Mono/IL2CPP backend require representative profiling/build evidence.
+- **Resolved for timing:** Defer Unity Localization package installation to the first real UI vertical slice while adopting localization-ready boundaries at bootstrap. Launch languages remain later product scope.
 - **IMPORTANT BUT NON-BLOCKING:** Which completed headless milestone authorizes Unity bootstrap?
 - **LATER:** UI binding/read models, navigation, accessibility, localization, and modding.
 - **IMPORTANT BUT NON-BLOCKING:** Provenance, uncertainty, historical context, and causality must remain queryable.

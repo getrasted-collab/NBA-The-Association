@@ -83,27 +83,27 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 |---|---|---|
 | Establish standalone C#/.NET foundation | **DONE** | Core, Application, Data, CLI, tests, solution, and reports exist. |
 | Create Unity project | **DEFER UNTIL UNITY** | Roadmap intentionally waits for a sufficiently developed headless vertical slice. |
-| Choose Unity version | **BLOCKED BY DECISION** | Select a supported LTS at bootstrap time after compatibility and package review. |
+| Choose Unity version | **BLOCKED BY DECISION** | Unity 6.3 LTS/current safe 6000.3 patch (`6000.3.25f1` at research time) is recommended; owner approval and a pre-install security refresh remain. |
 | Project name | **PARTIALLY DONE** | Product is “NBA The Association”; exact Unity project/folder display spelling should be approved. |
 | Company name | **BLOCKED BY DECISION** | Legal/studio identity has not been supplied. Do not invent it. |
 | Product name | **PARTIALLY DONE** | Working product name exists; final Unity Player Settings value needs approval. |
 | Application identifier/package name | **BLOCKED BY DECISION** | Requires approved reverse-domain/company namespace and platform targets. |
-| Target platforms | **BLOCKED BY DECISION** | No Windows/macOS/Linux/console target commitment has been approved. |
+| Target platforms | **BLOCKED BY DECISION** | Windows x64 is the recommended initial target; owner approval remains. Other platforms are deliberately future possibilities. |
 | Minimum hardware/OS direction | **BLOCKED BY DECISION** | Depends on target platforms, presentation scope, and performance research. |
 | Resolution strategy | **DEFER UNTIL UNITY** | Define after primary platforms and UI technology are selected. |
 | Aspect-ratio strategy | **DEFER UNTIL UNITY** | Plan for adaptive layouts, then verify against approved platform ratios. |
 | Windowed/fullscreen strategy | **DEFER UNTIL UNITY** | Desktop behavior depends on platform decision. |
-| Input system | **BLOCKED BY DECISION** | Recommend Unity Input System at bootstrap; confirm supported devices/platforms first. |
-| Rendering pipeline | **BLOCKED BY DECISION** | URP versus HDRP is a consequential platform/performance choice. |
+| Input system | **BLOCKED BY DECISION** | Input System with semantic keyboard/mouse/controller actions is recommended; owner approval remains. |
+| Rendering pipeline | **BLOCKED BY DECISION** | HDRP is recommended for the realistic Windows-desktop visual target; owner must approve the visual-ceiling versus hardware-reach tradeoff. |
 | Graphics APIs | **DEFER UNTIL UNITY** | Configure per target platform after pipeline/hardware choice. |
 | Quality tiers | **DEFER UNTIL UNITY** | Define baseline tiers after representative scenes and performance budgets exist. |
-| Frame-rate strategy | **BLOCKED BY DECISION** | Requires presentation/platform goals; do not assume 30/60/uncapped. |
+| Frame-rate strategy | **BLOCKED BY DECISION** | 60 FPS presentation with VSync default and simulation frame independence is recommended; owner approval remains. |
 | VSync strategy | **DEFER UNTIL UNITY** | Configure alongside frame pacing and display modes. |
-| Localization strategy | **BLOCKED BY DECISION** | Architecture should be localization-ready, but launch languages and Unity package choice are unapproved. |
+| Localization strategy | **PARTIALLY DONE** | Localization-ready boundaries are planned and package installation is deferred to the first UI slice; launch languages remain later product scope. |
 | Build settings | **DEFER UNTIL UNITY** | Scenes/platform configuration does not exist yet. |
 | Development build settings | **DEFER UNTIL UNITY** | Establish after Unity project and first boot scene. |
-| Scripting/backend decisions | **BLOCKED BY DECISION** | Unity compatibility with standalone assemblies and target backend must be proven; IL2CPP/Mono is platform-dependent. |
-| Project-wide Unity conventions | **READY TO DO NOW** | This document defines boundaries and preliminary naming; a bootstrap checklist can later turn them into settings. |
+| Scripting/backend decisions | **BLOCKED BY DECISION** | Multi-targeted .NET Standard 2.1 managed plug-ins are recommended, but a disposable spike must resolve current `DateOnly` compatibility; shipping backend can wait. |
+| Project-wide Unity conventions | **DONE** | Boundaries, package discipline, bootstrap sequence, and anti-manager rules are documented here and in `UNITY_FOUNDATION_DECISIONS.md`; implementation waits. |
 
 ### GitHub / Version Control
 
@@ -669,13 +669,13 @@ This milestone validates repository recovery, not backups alone. It should be re
 - **Codex autonomous:** local proof and documentation yes; copying data to external storage or a provider no without explicit owner approval.
 - **Owner decision:** select destination, encryption method, credential owner, and confirm retention. This is the only remaining blocker for completing this milestone.
 
-### Foundation C — Unity product decisions
+### Foundation C — Unity product decisions — **PARTIALLY DONE**
 
 - **Prerequisites:** primary presentation/platform goals and current Unity compatibility research at execution time.
-- **Tasks:** approve editor LTS, platforms, company/product identifiers, renderer, input direction, frame-rate direction, and standalone-assembly compatibility approach.
+- **Tasks:** recommendations are documented in `plans/UNITY_FOUNDATION_DECISIONS.md`; owner must approve the decision bundle, supply company/identifier values, and authorize the disposable compatibility spike.
 - **Completion:** every “must decide before creation” item has an accepted ADR/checklist value.
 - **Verification:** decision review against target hardware and a disposable compatibility spike.
-- **Can be done now:** partially; product decisions require the owner and version/package facts should be refreshed near bootstrap.
+- **Can be done now:** planning/research is done; approval and the disposable spike remain. Version/security/package facts must be refreshed at execution.
 - **Codex autonomous:** research/recommendations and spike execution when authorized; cannot invent product/legal identity or platform priorities.
 - **Owner decision:** required.
 
@@ -723,14 +723,10 @@ This milestone validates repository recovery, not backups alone. It should be re
 
 ### Blocking before Unity creation
 
-1. Primary initial target platform(s).
-2. Studio/company name and reverse-domain identifier root.
-3. Exact product display name versus repository/project code name.
-4. Renderer priority: visual ceiling versus hardware breadth/performance, leading to URP/HDRP choice.
-5. Initial input devices and whether keyboard/mouse plus controller are required from day one.
-6. Frame-rate/performance direction for the primary target.
-7. Localization ambition for first playable/release.
-8. Timing threshold for Unity creation: after which headless milestone is the host justified?
+1. Approve the recommended Foundation C bundle: Unity 6.3 LTS/current safe patch, Windows x64, HDRP, Input System, 60 FPS, responsive UI Toolkit-first presentation, and managed plug-in integration.
+2. Supply studio/company name and reverse-domain identifier root. Product/folder names are already recommended.
+3. Explicitly authorize and pass the disposable Unity compatibility spike, including the .NET Standard 2.1/`DateOnly` boundary.
+4. Explicitly authorize authoritative Unity creation after the spike; planning alone does not do so.
 
 ### Important but not blocking current standalone work
 
@@ -793,4 +789,4 @@ Until Unity is authorized, completing items 1–5 constitutes the **Standalone R
 
 ## Recommended next Project Foundation task
 
-Choose an independent encrypted off-machine destination and credential owner, then run the documented bundle process there and repeat the restore verification. The local Git-native mechanism is already proven. Do not enable LFS or create Unity merely to advance checklist status.
+Review and approve or revise `plans/UNITY_FOUNDATION_DECISIONS.md`, supply the company/identifier values, and then explicitly authorize the disposable compatibility spike. This does not authorize the real Unity project. The independent off-machine backup destination remains a separate unresolved Foundation B operation.
