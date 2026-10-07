@@ -37,6 +37,7 @@ Percentages are completion estimates for the named setup area, not game-developm
 - A root `README.md` documents prerequisites, architecture, layout, restore/build/test, and CLI commands.
 - The reviewed `.gitignore` excludes .NET output, common IDE state, Unity caches, build output, saves, artifacts, results, local secrets/signing material, coverage, captures, and local package caches without ignoring Unity `.meta` files.
 - The standalone recovery procedure passed against GitHub commit `865f6e7d998717f0f1281f9343ff9e759d0f827f`, including an isolated no-cache NuGet restore.
+- A Git-native independent-backup policy and safe bundle tool exist. A separate temporary bundle restore passed against commit `ca17a7fd69b9e7bdfba2e74f8aefafb84a542ff9`; an off-machine destination remains unselected.
 - No Unity project exists, by prior architectural decision.
 
 ### Working standalone architecture
@@ -71,7 +72,7 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 | Area | Estimated completion | Meaning |
 |---|---:|---|
 | Project Initialization | 15% | Standalone product, architecture, onboarding, and reproducible setup exist; Unity-specific product/platform decisions and host do not. |
-| GitHub / Version Control | 75% | Repository, main, workflow, policies, ignore rules, and isolated recovery are proven; independent backup, CI/protection, LFS activation, and releases remain. |
+| GitHub / Version Control | 80% | Repository, workflow, ignore rules, GitHub recovery, and independent bundle mechanics are proven; a permanent off-machine destination, CI/protection, LFS activation, and releases remain. |
 | Folder Architecture | 60% | Standalone layout and onboarding are sound; future Unity, source-assets, data, and build areas remain deliberately uncreated. |
 
 ## 2. Checklist status
@@ -124,7 +125,7 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 | Main branch protection | **PARTIALLY DONE** | No protection currently exists; decide when contributors/CI justify enforcement. |
 | Release/tagging strategy | **DONE** | Future policy is documented; no current release is implied. |
 | Version-number strategy | **DONE** | Future SemVer-compatible stages are documented. |
-| Backup strategy | **PARTIALLY DONE** | GitHub is one remote copy; independent backup and asset/data backup procedures do not exist. |
+| Backup strategy | **PARTIALLY DONE** | Classification, cadence, retention, encryption requirements, Git-bundle tooling, and an isolated restore proof exist. Owner must select and verify an independent off-machine destination. |
 | Recovery procedure | **DONE** | Safe isolated procedure and failure handling are documented. |
 | Fresh-clone standalone recovery test | **DONE** | GitHub clone, isolated restore, build, 33 tests, CLI, references, and clean state passed. |
 | Fresh-clone Unity recovery test | **DEFER UNTIL UNITY** | Requires Unity project/version/packages/assets. |
@@ -429,7 +430,7 @@ Future minimum:
 6. controlled data-package backup;
 7. later, save/build release backup and checksums.
 
-Document owner, frequency, retention, encryption, and restore test for each store before irreplaceable assets or real datasets enter the project.
+`BACKUP_STRATEGY.md` now defines the repository/source-asset split, frequency, retention, encryption, and restore verification. `tools/Backup-Repository.ps1` creates a verified all-ref bundle and checksum only at an explicit safe destination. The local restore mechanics are proven; an owner-approved off-machine destination and later asset/LFS backup remain required before irreplaceable assets or real datasets enter the project.
 
 ## 5. Long-term repository architecture
 
@@ -648,7 +649,7 @@ This milestone validates repository recovery, not backups alone. It should be re
 - **Codex autonomous:** yes for README/ignore/documentation; no for enabling account-level rules without owner direction.
 - **Owner decision:** whether to enable branch protection now; recommendation is wait until CI/contributors.
 
-### Foundation B — Standalone recovery proof — **DONE**
+### Foundation A2 — Standalone GitHub recovery proof — **DONE**
 
 - **Prerequisites:** Foundation A README commands.
 - **Tasks:** fresh isolated clone, restore, build, 33+ tests, CLI smoke test; document result.
@@ -657,6 +658,16 @@ This milestone validates repository recovery, not backups alone. It should be re
 - **Can be done now:** yes.
 - **Codex autonomous:** yes, using a separate temporary directory and non-destructive cleanup.
 - **Owner decision:** none unless network/account access fails.
+
+### Foundation B — Independent backup and restore strategy — **PARTIALLY DONE**
+
+- **Prerequisites:** clean committed repository and Foundation A/A2 recovery commands.
+- **Tasks:** classify protected/excluded content; define Git-native and future asset backup formats; add a safe explicit-destination bundle tool; prove bundle restoration; choose and test a permanent independent destination.
+- **Completion:** the latest protected revision and required non-Git assets can be restored from storage independent of GitHub and the working computer.
+- **Verification:** checksum/bundle verification, isolated clone, restore/build/33+ tests/CLI/project-boundary checks, plus a documented off-machine retrieval test.
+- **Can be done now:** policy, tooling, and local mechanics are done; permanent deployment waits for the destination decision.
+- **Codex autonomous:** local proof and documentation yes; copying data to external storage or a provider no without explicit owner approval.
+- **Owner decision:** select destination, encryption method, credential owner, and confirm retention. This is the only remaining blocker for completing this milestone.
 
 ### Foundation C — Unity product decisions
 
@@ -724,7 +735,7 @@ This milestone validates repository recovery, not backups alone. It should be re
 ### Important but not blocking current standalone work
 
 1. Whether to enable branch protection before CI/contributors. Recommendation: not yet.
-2. Independent backup destination/owner and retention schedule.
+2. Independent off-machine backup destination, encryption method, and credential owner. Recommended cadence/retention are now documented.
 3. GitHub LFS budget and authorized asset-vault choice before large binaries.
 4. Whether internal checkpoint tags are useful before the first playable. Recommendation: use sparingly.
 
@@ -734,7 +745,7 @@ Without Unity or new product decisions, Codex can safely:
 
 1. add a lightweight PR template only if the owner wants PRs now;
 2. inspect GitHub settings and recommend future branch protection/CI without enabling them;
-3. create an independent backup operations checklist once the owner selects its destination;
+3. configure and test the approved off-machine backup destination once the owner selects it;
 4. repeat the isolated recovery test after major dependency/tooling changes.
 
 Do not create speculative branches, LFS patterns, empty asset trees, or Unity settings as substitutes for real work.
@@ -782,4 +793,4 @@ Until Unity is authorized, completing items 1–5 constitutes the **Standalone R
 
 ## Recommended next Project Foundation task
 
-Choose an independent encrypted backup destination, owner, frequency, and retention policy, then document and test a repository backup/restore separate from GitHub. Do not enable LFS or create Unity merely to advance checklist status.
+Choose an independent encrypted off-machine destination and credential owner, then run the documented bundle process there and repeat the restore verification. The local Git-native mechanism is already proven. Do not enable LFS or create Unity merely to advance checklist status.

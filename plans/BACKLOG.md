@@ -6,7 +6,9 @@
 - [x] Establish Git/branch/commit/PR/LFS/never-commit policies.
 - [x] Review current `.gitignore` without hiding Unity `.meta` or source data broadly.
 - [x] Pass isolated GitHub clone, no-cache restore, build, 33-test, CLI, and dependency-boundary recovery proof.
-- [ ] Select and test an independent backup destination in addition to GitHub.
+- [x] Define independent backup classifications, cadence, retention, encryption, and restore procedures.
+- [x] Add and prove a safe Git-bundle/checksum backup tool through an isolated build, 33-test, and CLI restore.
+- [ ] Select, configure, and test an encrypted off-machine backup destination in addition to GitHub.
 - [ ] Resolve Unity bootstrap product/technical decisions before creating Unity.
 
 ## Phase 1 — Data Foundation

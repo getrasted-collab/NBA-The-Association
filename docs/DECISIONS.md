@@ -171,3 +171,14 @@ Record durable architecture and game-system decisions here. Do not silently rewr
 - **Reason:** Day-based league progression must be deterministic and independent from wall-clock/Unity concerns, while tipoffs still need a precise instant and authored local offset. A separate application layer prevents mutable workflow state from contaminating Core facts or Data persistence.
 - **Alternatives considered:** Use `DateTimeOffset` as the league clock, assign games by UTC date, mutate `LeagueWorld`, place workflows in Data/Core, automatically roll into later seasons, or introduce preseason/regular/postseason/offseason records immediately. These were rejected as ambiguous, incorrectly coupled, or premature for the first calendar slice.
 - **Consequences:** V1 does not recalculate venue time zones or daylight-saving rules; authored tipoff offsets are authoritative. Sessions can start before opening but cannot advance beyond Season end. Future offseason/rollover work must explicitly extend this boundary rather than relying on implicit transitions.
+
+## Repository operations decisions
+
+### ADR-018 — Git-native independent history backup with separate asset protection
+
+- **Status:** Accepted
+- **Date:** 2026-10-07
+- **Decision:** Protect committed repository history independently of GitHub with a verified `git bundle --all` and SHA-256 checksum. Future Git LFS objects, irreplaceable creative sources, licensed assets, and controlled data use a separate encrypted, versioned file-backup channel with inventory and restore verification. Generated caches and reproducible outputs are excluded. No external provider or device is selected without owner approval.
+- **Reason:** A working-directory copy does not reliably preserve all history/refs, while a Git bundle does not contain LFS objects or external files. The split keeps current operations simple without leaving future non-Git assets unprotected.
+- **Alternatives considered:** Rely on GitHub alone, copy only the working directory, back up generated caches, or immediately configure a provider/LFS. These were rejected as single-point, incomplete, wasteful, or unauthorized.
+- **Consequences:** Local bundle creation and restoration can be tested immediately. Foundation B remains incomplete until the owner selects an encrypted off-machine destination and that retrieval path passes a restore test. Git LFS stays disabled until qualifying assets and a corresponding object-backup procedure exist.

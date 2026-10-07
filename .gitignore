@@ -31,3 +31,7 @@ MemoryCaptures/
 Recordings/
 crash*.dmp
 .nuget/
+
+# Local repository-backup artifacts belong in an independent destination.
+*.bundle
+*.bundle.sha256

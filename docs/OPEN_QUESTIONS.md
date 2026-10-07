@@ -127,8 +127,9 @@ These do not block Slice 01 because those entities are excluded.
 ## Repository operations
 
 - **Resolved for the standalone foundation:** `main` plus risk-based short-lived topic branches, simple commit prefixes, selective future LFS, never-commit rules, and isolated GitHub recovery are documented and verified.
+- **Resolved for local backup mechanics — ADR-018:** Use a verified all-ref Git bundle plus SHA-256 checksum for committed repository history; future source assets/LFS/controlled data use a separate encrypted versioned channel.
 - **IMPORTANT BUT NON-BLOCKING:** Should `main` branch protection wait for CI/contributors as recommended, or be enabled earlier?
-- **IMPORTANT BUT NON-BLOCKING:** What independent backup destination, owner, schedule, retention, and encryption policy will supplement GitHub?
+- **BLOCKING for completion of Foundation B, non-blocking for current code:** Which independent off-machine destination and encryption method should be used, and who owns its credentials/recovery key? Recommended cadence and retention are defined in `BACKUP_STRATEGY.md`.
 - **IMPORTANT BUT NON-BLOCKING until large assets arrive:** What GitHub LFS quota/budget and authorized external asset vault are available?
 - **LATER:** When does contributor/release concurrency justify a long-lived integration branch? Current recommendation is no `develop` branch.
 

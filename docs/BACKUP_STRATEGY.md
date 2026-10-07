@@ -111,4 +111,6 @@ When source assets/LFS/controlled data exist, also restore them from their indep
 
 ## Current proof status
 
-The backup mechanism can be proven locally without selecting an external provider. That proof validates bundle creation and reconstruction, but it does **not** make the backup independent of this machine. The permanent off-machine destination remains an owner decision and must be configured and tested before independent backup is fully complete.
+The local mechanism was proven on 2026-10-07 against commit `ca17a7fd69b9e7bdfba2e74f8aefafb84a542ff9`. A SHA-256-checked bundle restored the complete repository into a separate temporary directory; the restored checkout built, passed all 33 tests, returned `VALID` from the CLI smoke test, contained all five expected projects, preserved the Core-only Application dependency, and remained clean. Temporary proof data was not retained as a project backup.
+
+This validates bundle creation and reconstruction, but it does **not** make the backup independent of this machine. The permanent off-machine destination remains an owner decision and must be configured and tested before independent backup is fully complete.
