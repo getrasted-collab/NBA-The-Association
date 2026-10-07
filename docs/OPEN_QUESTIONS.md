@@ -111,10 +111,25 @@ These do not block Slice 01 because those entities are excluded.
 
 ## Unity, UI, and presentation
 
-- **LATER:** Unity version, render pipeline, platforms, hardware, input, and packages.
+- **BLOCKING before Unity creation:** Which exact Unity LTS editor revision is approved after a current compatibility/package review?
+- **BLOCKING before Unity creation:** What are the initial target platforms and minimum hardware/OS direction?
+- **BLOCKING before Unity creation:** What company/studio name, product display name, and reverse-domain application identifier should Unity use?
+- **BLOCKING before Unity creation:** Which rendering pipeline best balances the intended visual ceiling with approved platform breadth—URP or HDRP?
+- **BLOCKING before Unity creation:** Which input devices must be first-class at bootstrap, and is Unity Input System approved?
+- **BLOCKING before Unity creation:** How will the `net10.0` standalone projects expose a Unity-compatible assembly/API boundary without duplicating domain logic?
+- **IMPORTANT BUT NON-BLOCKING:** What frame-rate, VSync, window-mode, resolution, and aspect-ratio targets apply to the primary platform?
+- **IMPORTANT BUT NON-BLOCKING:** Which languages/localization package and key-authoring workflow are required for the first playable?
+- **IMPORTANT BUT NON-BLOCKING:** Which completed headless milestone authorizes Unity bootstrap?
 - **LATER:** UI binding/read models, navigation, accessibility, localization, and modding.
 - **IMPORTANT BUT NON-BLOCKING:** Provenance, uncertainty, historical context, and causality must remain queryable.
 - **LATER:** 3D assets, event visualization, visual/audio identity, and performance budgets.
+
+## Repository operations
+
+- **IMPORTANT BUT NON-BLOCKING:** Should `main` branch protection wait for CI/contributors as recommended, or be enabled earlier?
+- **IMPORTANT BUT NON-BLOCKING:** What independent backup destination, owner, schedule, retention, and encryption policy will supplement GitHub?
+- **IMPORTANT BUT NON-BLOCKING until large assets arrive:** What GitHub LFS quota/budget and authorized external asset vault are available?
+- **LATER:** When does contributor/release concurrency justify a long-lived integration branch? Current recommendation is no `develop` branch.
 
 ## League calendar and time
 

@@ -2,7 +2,7 @@
 
 ## Phase 0 — Foundation
 
-Vision, architecture boundaries, data principles, roadmap, questions, decisions, and backlog. Complete.
+Vision, architecture boundaries, data principles, roadmap, questions, decisions, and backlog are complete. Operational repository onboarding/recovery standards are planned in `PROJECT_FOUNDATION_SETUP_PLAN.md`; Unity bootstrap remains intentionally deferred until its prerequisites and a sufficiently developed headless foundation are approved.
 
 ## Phase 1 — Data Foundation (complete for current needs)
 
