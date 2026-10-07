@@ -1,0 +1,17 @@
+[Bb]in/
+[Oo]bj/
+[Tt]est[Rr]esult*/
+.vs/
+.idea/
+*.user
+*.suo
+Library/
+Temp/
+Logs/
+UserSettings/
+Build/
+Builds/
+saves/
+artifacts/
+results/
+

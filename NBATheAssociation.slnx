@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/NBATheAssociation.Core/NBATheAssociation.Core.csproj" />
+    <Project Path="src/NBATheAssociation.Data/NBATheAssociation.Data.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/NBATheAssociation.Tests/NBATheAssociation.Tests.csproj" />
+  </Folder>
+</Solution>
