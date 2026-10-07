@@ -11,13 +11,15 @@
 - [x] Prove a synthetic parse → normalize → validate → package pipeline.
 - [x] Prove explicit V1 → V2 migration and add package inspection/diff/CLI tools.
 - [ ] Review the Slice 02 report and approve or revise the next slice.
-- [ ] Decide whether Slice 03 should harden authoring/import workflows or pause Data Foundation for League/Calendar planning.
+- [x] Pause Data Foundation import expansion and move to League/Calendar planning.
 - [ ] Define deterministic imported-ID generation before implementing it.
 - [ ] Define real-data rights policy before any real NBA import.
 
 ## Deferred milestones
 
-- [ ] League/calendar/schedule workflows.
+- [x] Pause further import expansion and plan Phase 2 League/Calendar/Schedule Slice 01.
+- [ ] Review and approve `LEAGUE_CALENDAR_IMPLEMENTATION_01.md`.
+- [ ] Implement the approved headless league session, schedule queries, advancement, validation, and synthetic fixtures.
 - [ ] Expanded player/team/roster systems.
 - [ ] Basketball simulation.
 - [ ] Statistics and standings.

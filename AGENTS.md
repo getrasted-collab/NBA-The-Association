@@ -22,4 +22,4 @@ NBA The Association is a long-term NBA league, franchise, career, and basketball
 
 ## Current scope
 
-Phase 1, Implementation Slice 01 is defined by `plans/DATA_FOUNDATION_IMPLEMENTATION_01.md`. Contracts, transactions, drafts, injuries, statistics, saves, AI, game modes, UI, and real NBA imports are out of scope.
+Data Foundation Slices 01 and 02 are complete. Phase 2 League/Calendar/Schedule Slice 01 is being planned in `plans/LEAGUE_CALENDAR_IMPLEMENTATION_01.md`; do not implement it until explicitly approved. Basketball simulation, contracts, transactions, drafts, injuries, statistics, saves, AI, game modes, UI, Unity, and real NBA imports remain out of scope.
