@@ -16,10 +16,10 @@ NBA The Association is a long-term NBA league, franchise, career, and basketball
 - Do not hard-code modern league structure or silently substitute modern defaults for unknown historical data.
 - Add and run proportionate automated tests. Preserve deterministic, headless execution.
 - Record meaningful architecture changes in `docs/DECISIONS.md`; update questions, roadmap, backlog, and implementation reports.
+- After completing and verifying repository changes, commit them and push the current branch to the configured GitHub remote. Report any push failure clearly.
 - Do not rewrite working systems without a documented reason.
 - Do not initialize Unity or implement basketball simulation unless explicitly authorized.
 
 ## Current scope
 
 Phase 1, Implementation Slice 01 is defined by `plans/DATA_FOUNDATION_IMPLEMENTATION_01.md`. Contracts, transactions, drafts, injuries, statistics, saves, AI, game modes, UI, and real NBA imports are out of scope.
-

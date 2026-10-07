@@ -151,3 +151,12 @@ Record durable architecture and game-system decisions here. Do not silently rewr
 - **Reason:** These conventions are sufficient for a small readable fixture and avoid maintaining two validation systems during the first proof.
 - **Alternatives considered:** Formal JSON Schema immediately, stringly formatted dates without framework support, or silently defaulted missing values.
 - **Consequences:** The serializer/domain boundary remains explicit. A later schema artifact must match the executable rules rather than redefine them.
+
+### ADR-016 — V2 packages expose historical availability, provenance, and external mappings
+
+- **Status:** Accepted
+- **Date:** 2026-10-07
+- **Decision:** V2 packages use a required manifest with schema/package identity, version, UTC creation time, season coverage, provenance references, and contained categories. Historical profile fields use `Known`, `Unknown`, or `NotApplicable`. Provenance and provider-neutral external mappings remain Data-layer metadata, not Core identity. Validation status is computed rather than persisted. Compatibility is proven by one explicit V1→V2 migration, not a generic migration framework.
+- **Reason:** Historical uncertainty, source traceability, and provider independence must be represented before controlled imports, while Core must remain storage- and provider-independent.
+- **Alternatives considered:** Provider IDs on domain entities, null-only historical fields, a persisted validation flag, and a generic migration/package platform; rejected as lossy, stale, or premature.
+- **Consequences:** V1 remains a frozen migration/regression input. V2 is the current canonical package output. Deterministic imported-ID generation, real-source governance, field-level provenance, package registries, and broader migration orchestration remain deferred.

@@ -19,6 +19,8 @@ public static class DataPackageValidator
         AddIds("game", package.Data.Games.Select(x => x.Id));
 
         ValidateGuid(package.PackageId, "$.packageId", "dataPackage");
+        if (string.IsNullOrWhiteSpace(package.PackageVersion))
+            Add("manifest.package_version.missing", "$.packageVersion", "Package version is required.");
 
         foreach (var season in package.Data.Seasons)
         {
@@ -52,6 +54,8 @@ public static class DataPackageValidator
             Ref("season", game.SeasonId, $"$.data.games[{game.Id}].seasonId", game.Id);
             Ref("teamSeason", game.HomeTeamSeasonId, $"$.data.games[{game.Id}].homeTeamSeasonId", game.Id);
             Ref("teamSeason", game.AwayTeamSeasonId, $"$.data.games[{game.Id}].awayTeamSeasonId", game.Id);
+            if (!string.Equals(game.Status, "scheduled", StringComparison.OrdinalIgnoreCase))
+                Add("game.status.invalid", $"$.data.games[{game.Id}].status", "Only scheduled games are supported by V1.", "game", game.Id);
             if (game.HomeTeamSeasonId == game.AwayTeamSeasonId) Add("game.same_participant", $"$.data.games[{game.Id}]", "Home and away participants must differ.", "game", game.Id);
             var season = package.Data.Seasons.FirstOrDefault(x => x.Id == game.SeasonId);
             var home = package.Data.TeamSeasons.FirstOrDefault(x => x.Id == game.HomeTeamSeasonId);
@@ -83,4 +87,3 @@ public static class DataPackageValidator
         void Add(string code, string path, string message, string? type = null, string? id = null) => issues.Add(new(code, ValidationSeverity.Error, path, message, type, id));
     }
 }
-

@@ -84,7 +84,7 @@ public class DataFoundationTests
             Assert.That(second.IsSuccess, Is.True, Issues(second));
             Assert.That(second.World!.PackageId, Is.EqualTo(first.World!.PackageId));
             Assert.That(second.World.Players.Keys, Is.EquivalentTo(first.World.Players.Keys));
-            Assert.That(second.World.PlayerSeasonProfiles.Values.Any(x => x.HeightInches is null && x.ExampleSkillRating is null), Is.True);
+            Assert.That(second.World.PlayerSeasonProfiles.Values.Any(x => x.HeightInches.State == HistoricalValueState.Unknown), Is.True);
         });
     }
 

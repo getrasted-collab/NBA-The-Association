@@ -18,6 +18,7 @@ Answered choices should be recorded in `DECISIONS.md`; do not infer answers mere
 - **Resolved — ADR-011:** Franchise is enduring; TeamSeason owns season-specific identity/participation; ordinary relocation/rebranding preserves the franchise.
 - **Resolved — ADR-012:** Historical unknowns remain explicit and provenance is separate from domain identity.
 - **Resolved — ADR-013:** Phase 1 uses fictional synthetic data; full NBA import is deferred.
+- **Resolved — ADR-016:** V2 package manifests, three-state historical values, package provenance, provider-neutral external mappings, explicit V1→V2 migration, and computed validation status.
 - **Resolved by project owner:** `C:\Users\Owner\Documents\ChatGPT\NBA` is authoritative. The location question is closed.
 
 ## Architecture
@@ -31,7 +32,7 @@ Answered choices should be recorded in `DECISIONS.md`; do not infer answers mere
 ## Identity and import
 
 - **BLOCKING only before deterministic imported IDs are implemented:** Which UUID algorithm/version, namespace UUIDs, canonical source keys, normalization rules, and collision policy produce deterministic imported IDs? ADR-007 requires documentation first.
-- **IMPORTANT BUT NON-BLOCKING:** What controlled vocabulary identifies external sources and entity types?
+- **Resolved for V2 — ADR-016:** Source names are provider-neutral strings; entity types use the closed V2 vocabulary implemented by the package validator. A governed real-provider source registry remains non-blocking until real-data work.
 - **IMPORTANT BUT NON-BLOCKING:** What uniqueness rules apply if a provider reuses identifiers or supplies multiple historical identifiers?
 - **IMPORTANT BUT NON-BLOCKING:** What review workflow handles conflicting mappings, merges, and splits?
 - **IMPORTANT BUT NON-BLOCKING:** What confidence/correction taxonomy accompanies real historical provenance?
@@ -113,6 +114,6 @@ These do not block Slice 01 because those entities are excluded.
 - **IMPORTANT BUT NON-BLOCKING:** Provenance, uncertainty, historical context, and causality must remain queryable.
 - **LATER:** 3D assets, event visualization, visual/audio identity, and performance budgets.
 
-## Remaining blockers for Implementation Slice 01
+## Remaining blockers after Implementation Slice 02
 
-None. Slice 01 uses fixed fixture GUID constants, so deterministic imported-ID generation remains deferred until its namespace/algorithm is documented.
+None for the completed synthetic Slice 02. Deterministic imported-ID generation and real-data rights remain blocking only before real-data import work. The next implementation slice should be planned and approved before coding.

@@ -1,0 +1,27 @@
+{
+  "manifest": {
+    "schemaVersion": 2,
+    "packageId": "00000000-0000-0000-0000-000000000003",
+    "packageVersion": "2.0.0",
+    "createdAtUtc": "2026-10-07T12:00:00+00:00",
+    "eraLabel": "Sparse synthetic historical league",
+    "seasonIds": ["31000000-0000-0000-0000-000000000001"],
+    "provenanceIds": ["b1000000-0000-0000-0000-000000000001"],
+    "containedCategories": ["franchises", "leagues", "people", "playerSeasonProfiles", "players", "rosterMemberships", "ruleSets", "seasons", "teamSeasons"]
+  },
+  "provenance": [{ "id": "b1000000-0000-0000-0000-000000000001", "sourceName": "SyntheticLedger", "sourceIdentifier": "ledger-1948", "retrievedAtUtc": null, "importedAtUtc": "2026-10-07T12:00:00+00:00", "importerVersion": "1.0", "transformationVersion": null, "usageNotes": "Fictional test data" }],
+  "externalIdMappings": [{ "sourceName": "SyntheticLedger", "entityType": "player", "externalIdentifier": "p-7", "internalId": "71000000-0000-0000-0000-000000000001", "provenanceId": "b1000000-0000-0000-0000-000000000001" }],
+  "data": {
+    "leagues": [{ "id": "11000000-0000-0000-0000-000000000001", "name": "Heritage Basketball Circuit" }],
+    "ruleSets": [{ "id": "21000000-0000-0000-0000-000000000001", "name": "Early Rules", "threePointEnabled": false, "regulationPeriodCount": 4, "regulationPeriodMinutes": 10 }],
+    "seasons": [{ "id": "31000000-0000-0000-0000-000000000001", "leagueId": "11000000-0000-0000-0000-000000000001", "label": "1948", "startsOn": "1948-01-01", "endsOn": "1948-12-31", "ruleSetId": "21000000-0000-0000-0000-000000000001" }],
+    "franchises": [{ "id": "41000000-0000-0000-0000-000000000001", "internalLabel": "Founders lineage" }],
+    "teamSeasons": [{ "id": "51000000-0000-0000-0000-000000000001", "franchiseId": "41000000-0000-0000-0000-000000000001", "seasonId": "31000000-0000-0000-0000-000000000001", "market": "Mill Town", "name": "Founders", "abbreviation": "MTF", "brandingReference": null }],
+    "people": [{ "id": "61000000-0000-0000-0000-000000000001", "givenName": "Robin", "familyName": "Stone" }],
+    "players": [{ "id": "71000000-0000-0000-0000-000000000001", "personId": "61000000-0000-0000-0000-000000000001" }],
+    "playerSeasonProfiles": [{ "id": "81000000-0000-0000-0000-000000000001", "playerId": "71000000-0000-0000-0000-000000000001", "seasonId": "31000000-0000-0000-0000-000000000001", "listedPosition": { "state": "notApplicable" }, "heightInches": { "state": "unknown" } }],
+    "rosterMemberships": [{ "id": "91000000-0000-0000-0000-000000000001", "playerId": "71000000-0000-0000-0000-000000000001", "teamSeasonId": "51000000-0000-0000-0000-000000000001", "startsOn": "1948-01-01", "endsOn": null }],
+    "games": []
+  }
+}
+

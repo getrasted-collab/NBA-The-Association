@@ -7,7 +7,8 @@ Vision, architecture boundaries, data principles, roadmap, questions, decisions,
 ## Phase 1 — Data Foundation (active)
 
 - Slice 01: typed identity, minimal league/season/franchise/team/player models, JSON envelope, validation, synthetic two-season fixture, and NUnit tests. **Implemented 2026-10-06.**
-- Later slices: broader cross-era fixtures, provider mappings/provenance, package manifests, import tooling, and compatibility evolution as justified.
+- Slice 02: explicit historical values, V2 manifests/provenance/external mappings, cross-record validation, synthetic import pipeline, explicit V1→V2 migration, cross-era fixtures, inspection/diff services, and a small CLI. **Implemented 2026-10-07.**
+- Next slice: define only the remaining package-authoring/import work needed before controlled real-data experiments; deterministic imported IDs and data-rights policy remain prerequisites for real data.
 
 ## Phase 2 — League, Calendar, and Schedule
 

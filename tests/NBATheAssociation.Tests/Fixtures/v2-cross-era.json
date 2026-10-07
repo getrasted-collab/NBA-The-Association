@@ -1,0 +1,54 @@
+{
+  "manifest": {
+    "schemaVersion": 2,
+    "packageId": "00000000-0000-0000-0000-000000000002",
+    "packageVersion": "2.0.0",
+    "createdAtUtc": "2026-10-07T12:00:00+00:00",
+    "eraLabel": "Cross-era synthetic league",
+    "seasonIds": ["30000000-0000-0000-0000-000000000001", "30000000-0000-0000-0000-000000000002"],
+    "provenanceIds": ["b0000000-0000-0000-0000-000000000001", "b0000000-0000-0000-0000-000000000002"],
+    "containedCategories": ["franchises", "games", "leagues", "people", "playerSeasonProfiles", "players", "rosterMemberships", "ruleSets", "seasons", "teamSeasons"]
+  },
+  "provenance": [
+    { "id": "b0000000-0000-0000-0000-000000000001", "sourceName": "SyntheticArchiveA", "sourceIdentifier": "archive-a", "retrievedAtUtc": "2026-10-01T12:00:00+00:00", "importedAtUtc": "2026-10-07T12:00:00+00:00", "importerVersion": "1.0", "transformationVersion": "1", "usageNotes": "Fictional test data" },
+    { "id": "b0000000-0000-0000-0000-000000000002", "sourceName": "SyntheticArchiveB", "sourceIdentifier": "archive-b", "retrievedAtUtc": null, "importedAtUtc": "2026-10-07T12:00:00+00:00", "importerVersion": "1.0", "transformationVersion": null, "usageNotes": "Fictional test data" }
+  ],
+  "externalIdMappings": [
+    { "sourceName": "SyntheticArchiveA", "entityType": "player", "externalIdentifier": "player-44", "internalId": "70000000-0000-0000-0000-000000000001", "provenanceId": "b0000000-0000-0000-0000-000000000001" },
+    { "sourceName": "SyntheticArchiveB", "entityType": "player", "externalIdentifier": "athlete-x", "internalId": "70000000-0000-0000-0000-000000000001", "provenanceId": "b0000000-0000-0000-0000-000000000002" },
+    { "sourceName": "SyntheticArchiveA", "entityType": "franchise", "externalIdentifier": "club-1", "internalId": "40000000-0000-0000-0000-000000000001", "provenanceId": "b0000000-0000-0000-0000-000000000001" }
+  ],
+  "data": {
+    "leagues": [{ "id": "10000000-0000-0000-0000-000000000001", "name": "Continental Basketball League" }],
+    "ruleSets": [
+      { "id": "20000000-0000-0000-0000-000000000001", "name": "Classic", "threePointEnabled": false, "regulationPeriodCount": 4, "regulationPeriodMinutes": 12 },
+      { "id": "20000000-0000-0000-0000-000000000002", "name": "Modernized", "threePointEnabled": true, "regulationPeriodCount": 4, "regulationPeriodMinutes": 12 }
+    ],
+    "seasons": [
+      { "id": "30000000-0000-0000-0000-000000000001", "leagueId": "10000000-0000-0000-0000-000000000001", "label": "1984-85", "startsOn": "1984-07-01", "endsOn": "1985-06-30", "ruleSetId": "20000000-0000-0000-0000-000000000001" },
+      { "id": "30000000-0000-0000-0000-000000000002", "leagueId": "10000000-0000-0000-0000-000000000001", "label": "1985-86", "startsOn": "1985-07-01", "endsOn": "1986-06-30", "ruleSetId": "20000000-0000-0000-0000-000000000002" }
+    ],
+    "franchises": [{ "id": "40000000-0000-0000-0000-000000000001", "internalLabel": "Comets lineage" }, { "id": "40000000-0000-0000-0000-000000000002", "internalLabel": "Owls lineage" }],
+    "teamSeasons": [
+      { "id": "50000000-0000-0000-0000-000000000001", "franchiseId": "40000000-0000-0000-0000-000000000001", "seasonId": "30000000-0000-0000-0000-000000000001", "market": "Harbor City", "name": "Comets", "abbreviation": "HCC", "brandingReference": "comets" },
+      { "id": "50000000-0000-0000-0000-000000000002", "franchiseId": "40000000-0000-0000-0000-000000000002", "seasonId": "30000000-0000-0000-0000-000000000001", "market": "Pine Valley", "name": "Owls", "abbreviation": "PVO", "brandingReference": "owls" },
+      { "id": "50000000-0000-0000-0000-000000000003", "franchiseId": "40000000-0000-0000-0000-000000000001", "seasonId": "30000000-0000-0000-0000-000000000002", "market": "Summit City", "name": "Stallions", "abbreviation": "SCS", "brandingReference": "stallions" },
+      { "id": "50000000-0000-0000-0000-000000000004", "franchiseId": "40000000-0000-0000-0000-000000000002", "seasonId": "30000000-0000-0000-0000-000000000002", "market": "Pine Valley", "name": "Owls", "abbreviation": "PVO", "brandingReference": "owls" }
+    ],
+    "people": [{ "id": "60000000-0000-0000-0000-000000000001", "givenName": "Alex", "familyName": "Mercer" }],
+    "players": [{ "id": "70000000-0000-0000-0000-000000000001", "personId": "60000000-0000-0000-0000-000000000001" }],
+    "playerSeasonProfiles": [
+      { "id": "80000000-0000-0000-0000-000000000001", "playerId": "70000000-0000-0000-0000-000000000001", "seasonId": "30000000-0000-0000-0000-000000000001", "listedPosition": { "state": "known", "value": "Guard" }, "heightInches": { "state": "known", "value": 75 } },
+      { "id": "80000000-0000-0000-0000-000000000002", "playerId": "70000000-0000-0000-0000-000000000001", "seasonId": "30000000-0000-0000-0000-000000000002", "listedPosition": { "state": "unknown" }, "heightInches": { "state": "unknown" } }
+    ],
+    "rosterMemberships": [
+      { "id": "90000000-0000-0000-0000-000000000001", "playerId": "70000000-0000-0000-0000-000000000001", "teamSeasonId": "50000000-0000-0000-0000-000000000001", "startsOn": "1984-07-01", "endsOn": "1985-06-30" },
+      { "id": "90000000-0000-0000-0000-000000000002", "playerId": "70000000-0000-0000-0000-000000000001", "teamSeasonId": "50000000-0000-0000-0000-000000000004", "startsOn": "1985-07-01", "endsOn": null }
+    ],
+    "games": [
+      { "id": "a0000000-0000-0000-0000-000000000001", "seasonId": "30000000-0000-0000-0000-000000000001", "scheduledStart": "1984-11-01T19:00:00-05:00", "homeTeamSeasonId": "50000000-0000-0000-0000-000000000001", "awayTeamSeasonId": "50000000-0000-0000-0000-000000000002", "status": "scheduled" },
+      { "id": "a0000000-0000-0000-0000-000000000002", "seasonId": "30000000-0000-0000-0000-000000000002", "scheduledStart": "1985-11-01T19:00:00-05:00", "homeTeamSeasonId": "50000000-0000-0000-0000-000000000003", "awayTeamSeasonId": "50000000-0000-0000-0000-000000000004", "status": "scheduled" }
+    ]
+  }
+}
+
