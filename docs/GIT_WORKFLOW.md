@@ -171,3 +171,5 @@ Do not commit generated Unity caches or local builds. Review `.gitignore` agains
 GitHub is the primary source-control remote, not a complete backup system. Irreplaceable source assets, future LFS objects, controlled data, and releases require an independent backup destination and tested restoration policy.
 
 Follow [REPOSITORY_RECOVERY.md](REPOSITORY_RECOVERY.md) for the safe isolated recovery test. Never delete the only working copy to prove recoverability.
+
+Follow [BACKUP_STRATEGY.md](BACKUP_STRATEGY.md) for the independent Git-bundle format, retention, restore verification, and the separate future treatment of LFS/source assets. No permanent destination has been selected, and no project data may be uploaded to a third-party backup provider without owner approval.

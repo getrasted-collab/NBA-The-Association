@@ -95,5 +95,6 @@ dotnet run --project tools/NBATheAssociation.Cli --no-restore -- inspect tests/N
 - See [Architecture](docs/ARCHITECTURE.md), [Decision Log](docs/DECISIONS.md), and [Roadmap](docs/ROADMAP.md).
 - Follow [Git Workflow](docs/GIT_WORKFLOW.md) for branches, commits, assets, and never-commit rules.
 - Use [Repository Recovery](docs/REPOSITORY_RECOVERY.md) for an isolated reconstruction test.
+- Use [Independent Backup Strategy](docs/BACKUP_STRATEGY.md) for Git-native backups and future source-asset protection.
 
 Do not introduce Unity, real NBA data, or a new gameplay slice without an explicitly approved plan.
