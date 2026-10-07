@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/src/">
+    <Project Path="src/NBATheAssociation.Application/NBATheAssociation.Application.csproj" />
     <Project Path="src/NBATheAssociation.Core/NBATheAssociation.Core.csproj" />
     <Project Path="src/NBATheAssociation.Data/NBATheAssociation.Data.csproj" />
   </Folder>

@@ -1,0 +1,40 @@
+{
+  "manifest": {
+    "schemaVersion": 2,
+    "packageId": "02000000-0000-0000-0000-000000000002",
+    "packageVersion": "2.0.0",
+    "createdAtUtc": "2026-10-07T12:00:00+00:00",
+    "eraLabel": "Small historical-style calendar fixture",
+    "seasonIds": ["33000000-0000-0000-0000-000000000001"],
+    "provenanceIds": ["b3000000-0000-0000-0000-000000000001"],
+    "containedCategories": ["franchises", "games", "leagues", "ruleSets", "seasons", "teamSeasons"]
+  },
+  "provenance": [
+    { "id": "b3000000-0000-0000-0000-000000000001", "sourceName": "SyntheticHeritageDesk", "sourceIdentifier": "winter-1952", "retrievedAtUtc": null, "importedAtUtc": "2026-10-07T12:00:00+00:00", "importerVersion": "1.0", "transformationVersion": null, "usageNotes": "Fictional test data" }
+  ],
+  "externalIdMappings": [],
+  "data": {
+    "leagues": [{ "id": "13000000-0000-0000-0000-000000000001", "name": "Tri-City Winter Circuit" }],
+    "ruleSets": [{ "id": "23000000-0000-0000-0000-000000000001", "name": "Winter Rules", "threePointEnabled": false, "regulationPeriodCount": 2, "regulationPeriodMinutes": 20 }],
+    "seasons": [{ "id": "33000000-0000-0000-0000-000000000001", "leagueId": "13000000-0000-0000-0000-000000000001", "label": "Winter 1952", "startsOn": "1952-02-01", "endsOn": "1952-02-12", "ruleSetId": "23000000-0000-0000-0000-000000000001" }],
+    "franchises": [
+      { "id": "43000000-0000-0000-0000-000000000001", "internalLabel": "Millers" },
+      { "id": "43000000-0000-0000-0000-000000000002", "internalLabel": "Railers" },
+      { "id": "43000000-0000-0000-0000-000000000003", "internalLabel": "Mariners" }
+    ],
+    "teamSeasons": [
+      { "id": "53000000-0000-0000-0000-000000000001", "franchiseId": "43000000-0000-0000-0000-000000000001", "seasonId": "33000000-0000-0000-0000-000000000001", "market": "Mill Town", "name": "Millers", "abbreviation": "MTM", "brandingReference": null },
+      { "id": "53000000-0000-0000-0000-000000000002", "franchiseId": "43000000-0000-0000-0000-000000000002", "seasonId": "33000000-0000-0000-0000-000000000001", "market": "Junction", "name": "Railers", "abbreviation": "JCR", "brandingReference": null },
+      { "id": "53000000-0000-0000-0000-000000000003", "franchiseId": "43000000-0000-0000-0000-000000000003", "seasonId": "33000000-0000-0000-0000-000000000001", "market": "Port Union", "name": "Mariners", "abbreviation": "PUM", "brandingReference": null }
+    ],
+    "people": [],
+    "players": [],
+    "playerSeasonProfiles": [],
+    "rosterMemberships": [],
+    "games": [
+      { "id": "a3000000-0000-0000-0000-000000000001", "seasonId": "33000000-0000-0000-0000-000000000001", "scheduledStart": "1952-02-01T19:00:00-05:00", "homeTeamSeasonId": "53000000-0000-0000-0000-000000000001", "awayTeamSeasonId": "53000000-0000-0000-0000-000000000002", "status": "scheduled" },
+      { "id": "a3000000-0000-0000-0000-000000000002", "seasonId": "33000000-0000-0000-0000-000000000001", "scheduledStart": "1952-02-08T20:00:00-06:00", "homeTeamSeasonId": "53000000-0000-0000-0000-000000000003", "awayTeamSeasonId": "53000000-0000-0000-0000-000000000001", "status": "scheduled" },
+      { "id": "a3000000-0000-0000-0000-000000000003", "seasonId": "33000000-0000-0000-0000-000000000001", "scheduledStart": "1952-02-12T18:30:00-05:00", "homeTeamSeasonId": "53000000-0000-0000-0000-000000000002", "awayTeamSeasonId": "53000000-0000-0000-0000-000000000003", "status": "scheduled" }
+    ]
+  }
+}

@@ -1,3 +1,5 @@
+using NBATheAssociation.Core;
+
 namespace NBATheAssociation.Data;
 
 public static class V2PackageValidator
@@ -41,6 +43,13 @@ public static class V2PackageValidator
             Ref("league", s.LeagueId, $"$.data.seasons[{s.Id}].leagueId"); Ref("ruleSet", s.RuleSetId, $"$.data.seasons[{s.Id}].ruleSetId");
             if (s.EndsOn < s.StartsOn) Add("season.date_range.invalid", $"$.data.seasons[{s.Id}]", "Season end precedes start.");
         }
+        foreach (var leagueSeasons in seasons.GroupBy(x => x.LeagueId, StringComparer.OrdinalIgnoreCase))
+        {
+            var ordered = leagueSeasons.OrderBy(x => x.StartsOn).ThenBy(x => x.EndsOn).ToArray();
+            for (var i = 1; i < ordered.Length; i++)
+                if (ordered[i].StartsOn <= ordered[i - 1].EndsOn)
+                    Add("season.overlap", "$.data.seasons", "Seasons in the same League cannot have overlapping inclusive date ranges.");
+        }
         foreach (var t in teams) { Ref("franchise", t.FranchiseId, $"$.data.teamSeasons[{t.Id}].franchiseId"); Ref("season", t.SeasonId, $"$.data.teamSeasons[{t.Id}].seasonId"); }
         foreach (var duplicate in teams.GroupBy(x => (x.FranchiseId.ToUpperInvariant(), x.SeasonId.ToUpperInvariant())).Where(x => x.Count() > 1))
             Add("team_season.identity.duplicate", "$.data.teamSeasons", "A franchise may have only one TeamSeason per season in V2.");
@@ -75,13 +84,26 @@ public static class V2PackageValidator
         {
             Ref("season", g.SeasonId, $"$.data.games[{g.Id}].seasonId"); Ref("teamSeason", g.HomeTeamSeasonId, $"$.data.games[{g.Id}].homeTeamSeasonId"); Ref("teamSeason", g.AwayTeamSeasonId, $"$.data.games[{g.Id}].awayTeamSeasonId");
             if (!string.Equals(g.Status, "scheduled", StringComparison.OrdinalIgnoreCase)) Add("game.status.invalid", $"$.data.games[{g.Id}].status", "Only scheduled games are supported.");
+            if (g.ScheduledStart == default) Add("game.scheduled_start.invalid", $"$.data.games[{g.Id}].scheduledStart", "A scheduled tipoff is required.");
             if (g.HomeTeamSeasonId == g.AwayTeamSeasonId) Add("game.same_participant", $"$.data.games[{g.Id}]", "Home and away must differ.");
             if (seasonById.TryGetValue(g.SeasonId, out var s))
             {
                 if ((teamById.TryGetValue(g.HomeTeamSeasonId, out var h) && h.SeasonId != s.Id) || (teamById.TryGetValue(g.AwayTeamSeasonId, out var a) && a.SeasonId != s.Id)) Add("game.participant_wrong_season", $"$.data.games[{g.Id}]", "Participants must belong to game season.");
-                var date = DateOnly.FromDateTime(g.ScheduledStart.Date); if (date < s.StartsOn || date > s.EndsOn) Add("game.outside_season", $"$.data.games[{g.Id}]", "Game is outside season.");
+                var date = Game.GetScheduledDate(g.ScheduledStart); if (date < s.StartsOn || date > s.EndsOn) Add("game.outside_season", $"$.data.games[{g.Id}]", "Game is outside season.");
             }
         }
+        foreach (var duplicate in games.GroupBy(g =>
+        {
+            var participants = new[] { g.HomeTeamSeasonId.ToUpperInvariant(), g.AwayTeamSeasonId.ToUpperInvariant() }.Order(StringComparer.Ordinal).ToArray();
+            return (Season: g.SeasonId.ToUpperInvariant(), Instant: g.ScheduledStart.UtcTicks, First: participants[0], Second: participants[1]);
+        }).Where(x => x.Count() > 1))
+            Add("game.schedule_duplicate", "$.data.games", "Distinct Game IDs cannot represent the same matchup at the same instant.");
+
+        foreach (var conflict in games
+            .SelectMany(g => new[] { g.HomeTeamSeasonId, g.AwayTeamSeasonId }.Select(team => (Game: g, Team: team.ToUpperInvariant())))
+            .GroupBy(x => (Season: x.Game.SeasonId.ToUpperInvariant(), Instant: x.Game.ScheduledStart.UtcTicks, x.Team))
+            .Where(x => x.Select(v => v.Game.Id).Distinct(StringComparer.OrdinalIgnoreCase).Count() > 1))
+            Add("game.team_time_conflict", "$.data.games", "A TeamSeason cannot appear in multiple games at the same instant.");
 
         var provenanceIds = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         foreach (var p in provenance)

@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\NBATheAssociation.Application\NBATheAssociation.Application.csproj" />
     <ProjectReference Include="..\..\src\NBATheAssociation.Core\NBATheAssociation.Core.csproj" />
     <ProjectReference Include="..\..\src\NBATheAssociation.Data\NBATheAssociation.Data.csproj" />
     <ProjectReference Include="..\..\tools\NBATheAssociation.Cli\NBATheAssociation.Cli.csproj" />
@@ -30,6 +31,8 @@
     <Content Include="Fixtures\v2-cross-era.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Fixtures\v2-sparse-historical.json" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Fixtures\raw-synthetic-source.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Fixtures\league-calendar-short.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Fixtures\league-calendar-historical.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
 </Project>

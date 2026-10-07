@@ -18,8 +18,9 @@
 ## Deferred milestones
 
 - [x] Pause further import expansion and plan Phase 2 League/Calendar/Schedule Slice 01.
-- [ ] Review and approve `LEAGUE_CALENDAR_IMPLEMENTATION_01.md`.
-- [ ] Implement the approved headless league session, schedule queries, advancement, validation, and synthetic fixtures.
+- [x] Review and approve `LEAGUE_CALENDAR_IMPLEMENTATION_01.md`.
+- [x] Implement the approved headless league session, schedule queries, advancement, validation, and synthetic fixtures.
+- [ ] Review the Phase 2 Slice 01 implementation report before planning the next slice.
 - [ ] Expanded player/team/roster systems.
 - [ ] Basketball simulation.
 - [ ] Statistics and standings.

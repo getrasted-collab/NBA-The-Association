@@ -14,7 +14,8 @@ Vision, architecture boundaries, data principles, roadmap, questions, decisions,
 
 Configurable seasons, participants, dates, schedule constraints/import, and advancement.
 
-- Slice 01 planning: authoritative league date, immutable starting world versus mutable session, season participation, indexed schedule queries, deterministic advancement, boundaries, and structural schedule validation. **Planned 2026-10-07; awaiting approval.**
+- Slice 01: authoritative civil league date, immutable starting world versus mutable season session, participation, indexed schedule queries, deterministic advancement, boundaries, structural validation, and variable-size fixtures. **Implemented 2026-10-07.**
+- Next slice requires a separate plan. Season rollover, phases, schedule generation, game results, and standings remain excluded.
 
 ## Phase 3 — Player, Team, Roster, and Lineup Models
 

@@ -15,4 +15,10 @@ public sealed record PlayerSeasonProfile(
     HistoricalValue<int> HeightInches);
 public sealed record RosterMembership(RosterMembershipId Id, PlayerId PlayerId, TeamSeasonId TeamSeasonId, DateOnly StartsOn, DateOnly? EndsOn);
 public enum GameStatus { Scheduled }
-public sealed record Game(GameId Id, SeasonId SeasonId, DateTimeOffset ScheduledStart, TeamSeasonId HomeTeamSeasonId, TeamSeasonId AwayTeamSeasonId, GameStatus Status);
+public sealed record Game(GameId Id, SeasonId SeasonId, DateTimeOffset ScheduledStart, TeamSeasonId HomeTeamSeasonId, TeamSeasonId AwayTeamSeasonId, GameStatus Status)
+{
+    public DateOnly ScheduledDate => GetScheduledDate(ScheduledStart);
+
+    public static DateOnly GetScheduledDate(DateTimeOffset scheduledStart) =>
+        DateOnly.FromDateTime(scheduledStart.DateTime);
+}

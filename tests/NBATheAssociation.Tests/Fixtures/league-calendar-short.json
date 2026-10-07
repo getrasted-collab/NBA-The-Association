@@ -1,0 +1,60 @@
+{
+  "manifest": {
+    "schemaVersion": 2,
+    "packageId": "02000000-0000-0000-0000-000000000001",
+    "packageVersion": "2.0.0",
+    "createdAtUtc": "2026-10-07T12:00:00+00:00",
+    "eraLabel": "Short four-team calendar fixture",
+    "seasonIds": ["32000000-0000-0000-0000-000000000001"],
+    "provenanceIds": ["b2000000-0000-0000-0000-000000000001"],
+    "containedCategories": ["franchises", "games", "leagues", "ruleSets", "seasons", "teamSeasons"]
+  },
+  "provenance": [
+    {
+      "id": "b2000000-0000-0000-0000-000000000001",
+      "sourceName": "SyntheticCalendarLab",
+      "sourceIdentifier": "short-calendar",
+      "retrievedAtUtc": null,
+      "importedAtUtc": "2026-10-07T12:00:00+00:00",
+      "importerVersion": "1.0",
+      "transformationVersion": null,
+      "usageNotes": "Fictional test data"
+    }
+  ],
+  "externalIdMappings": [],
+  "data": {
+    "leagues": [
+      { "id": "12000000-0000-0000-0000-000000000001", "name": "Northstar Basketball League" }
+    ],
+    "ruleSets": [
+      { "id": "22000000-0000-0000-0000-000000000001", "name": "Northstar Short Season", "threePointEnabled": false, "regulationPeriodCount": 4, "regulationPeriodMinutes": 11 }
+    ],
+    "seasons": [
+      { "id": "32000000-0000-0000-0000-000000000001", "leagueId": "12000000-0000-0000-0000-000000000001", "label": "2035 Festival", "startsOn": "2035-01-01", "endsOn": "2035-01-12", "ruleSetId": "22000000-0000-0000-0000-000000000001" }
+    ],
+    "franchises": [
+      { "id": "42000000-0000-0000-0000-000000000001", "internalLabel": "Auroras" },
+      { "id": "42000000-0000-0000-0000-000000000002", "internalLabel": "Forge" },
+      { "id": "42000000-0000-0000-0000-000000000003", "internalLabel": "Tides" },
+      { "id": "42000000-0000-0000-0000-000000000004", "internalLabel": "Canyons" }
+    ],
+    "teamSeasons": [
+      { "id": "52000000-0000-0000-0000-000000000001", "franchiseId": "42000000-0000-0000-0000-000000000001", "seasonId": "32000000-0000-0000-0000-000000000001", "market": "Northport", "name": "Auroras", "abbreviation": "NPA", "brandingReference": null },
+      { "id": "52000000-0000-0000-0000-000000000002", "franchiseId": "42000000-0000-0000-0000-000000000002", "seasonId": "32000000-0000-0000-0000-000000000001", "market": "Ironvale", "name": "Forge", "abbreviation": "IVF", "brandingReference": null },
+      { "id": "52000000-0000-0000-0000-000000000003", "franchiseId": "42000000-0000-0000-0000-000000000003", "seasonId": "32000000-0000-0000-0000-000000000001", "market": "Bay Point", "name": "Tides", "abbreviation": "BPT", "brandingReference": null },
+      { "id": "52000000-0000-0000-0000-000000000004", "franchiseId": "42000000-0000-0000-0000-000000000004", "seasonId": "32000000-0000-0000-0000-000000000001", "market": "Red Mesa", "name": "Canyons", "abbreviation": "RMC", "brandingReference": null }
+    ],
+    "people": [],
+    "players": [],
+    "playerSeasonProfiles": [],
+    "rosterMemberships": [],
+    "games": [
+      { "id": "a2000000-0000-0000-0000-000000000001", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-01T19:00:00-05:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000001", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000002", "status": "scheduled" },
+      { "id": "a2000000-0000-0000-0000-000000000002", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-01T22:30:00-08:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000003", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000004", "status": "scheduled" },
+      { "id": "a2000000-0000-0000-0000-000000000003", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-03T18:00:00+01:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000001", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000003", "status": "scheduled" },
+      { "id": "a2000000-0000-0000-0000-000000000004", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-04T20:00:00+09:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000004", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000001", "status": "scheduled" },
+      { "id": "a2000000-0000-0000-0000-000000000005", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-06T19:30:00-06:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000002", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000003", "status": "scheduled" },
+      { "id": "a2000000-0000-0000-0000-000000000006", "seasonId": "32000000-0000-0000-0000-000000000001", "scheduledStart": "2035-01-10T19:00:00-07:00", "homeTeamSeasonId": "52000000-0000-0000-0000-000000000004", "awayTeamSeasonId": "52000000-0000-0000-0000-000000000002", "status": "scheduled" }
+    ]
+  }
+}

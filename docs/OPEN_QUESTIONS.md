@@ -24,6 +24,7 @@ Answered choices should be recorded in `DECISIONS.md`; do not infer answers mere
 ## Architecture
 
 - **Resolved — ADR-014:** Slice 01 targets `net10.0`.
+- **Resolved — ADR-017:** Headless league/calendar workflows use a Core-only Application layer; `LeagueWorld` remains immutable and `LeagueSession` owns runtime date.
 - **IMPORTANT BUT NON-BLOCKING:** What exact future assembly/package boundary will connect the standalone core to Unity? Needed before Unity work, not before logical modeling.
 - **IMPORTANT BUT NON-BLOCKING:** What command/query and domain-event conventions are appropriate without overengineering?
 - **IMPORTANT BUT NON-BLOCKING:** What deterministic RNG and stream-partitioning strategy will generated/simulated data use?
@@ -56,6 +57,7 @@ Answered choices should be recorded in `DECISIONS.md`; do not infer answers mere
 
 ## Historical structure
 
+- **Resolved for Phase 2 Slice 01 — ADR-017:** The first runtime is season-oriented, stops at the inclusive Season end, and does not introduce SeasonPhase or automatic rollover.
 - **IMPORTANT BUT NON-BLOCKING:** What lineage relation vocabulary eventually represents expansion, contraction, reactivation, predecessor/successor, and officially reassigned history? ADR-011 limits V1 to ordinary continuity.
 - **IMPORTANT BUT NON-BLOCKING:** Are mid-season city/name/venue changes required, or is one identity per TeamSeason sufficient initially?
 - **IMPORTANT BUT NON-BLOCKING:** When a save crosses known historical changes, which occur automatically, optionally, or never?
@@ -114,6 +116,14 @@ These do not block Slice 01 because those entities are excluded.
 - **IMPORTANT BUT NON-BLOCKING:** Provenance, uncertainty, historical context, and causality must remain queryable.
 - **LATER:** 3D assets, event visualization, visual/audio identity, and performance budgets.
 
-## Remaining blockers after Implementation Slice 02
+## League calendar and time
 
-None for the completed synthetic Slice 02. Deterministic imported-ID generation and real-data rights remain blocking only before real-data import work. The next implementation slice should be planned and approved before coding.
+- **Resolved — ADR-017:** The authoritative league date is `DateOnly`; Game tipoffs remain `DateTimeOffset`; schedule date uses the civil date at the stored offset.
+- **IMPORTANT BUT NON-BLOCKING:** When explicit competition phases are introduced, which cross-era phase vocabulary and boundary rules are required?
+- **IMPORTANT BUT NON-BLOCKING:** What offseason/rollover command creates or selects the next Season without assuming modern NBA workflows?
+- **LATER:** Do venue time-zone identifiers and historical daylight-saving rules need to supplement authored numeric offsets?
+- **LATER:** How are postponements, cancellations, and rescheduled tipoffs represented once Game state becomes mutable?
+
+## Remaining blockers after Phase 2 Implementation Slice 01
+
+None for the completed synthetic league/calendar slice. Deterministic imported-ID generation and real-data rights remain blocking only before real-data import work. Season phases and rollover require decisions before their own future slices, not before using the current session. The next slice must be planned and approved before coding.

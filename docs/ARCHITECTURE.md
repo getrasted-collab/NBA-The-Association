@@ -18,7 +18,8 @@ The domain core must not reference Unity, UI, scene lifecycle, JSON, filesystems
 
 - `NBATheAssociation.Core` — typed identities and domain records/invariants
 - `NBATheAssociation.Data` — JSON DTOs, validation, and materialization
-- `NBATheAssociation.Tests` — Slice 01 NUnit tests
+- `NBATheAssociation.Application` — headless runtime workflows and derived schedule queries; references Core only
+- `NBATheAssociation.Tests` — NUnit regression and slice tests
 
 Future Simulation, CLI, infrastructure, and Unity projects are created only when their approved slices need them.
 
@@ -41,4 +42,3 @@ Default, GM, and Player modes will operate on the same world. Rules, league stru
 - Storage DTOs and domain objects remain separate.
 - Prefer explicit validators and mappings over reflection-heavy frameworks.
 - Avoid microservices, ECS, event sourcing, and generic repository layers without measured need.
-

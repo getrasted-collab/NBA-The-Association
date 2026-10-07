@@ -160,3 +160,14 @@ Record durable architecture and game-system decisions here. Do not silently rewr
 - **Reason:** Historical uncertainty, source traceability, and provider independence must be represented before controlled imports, while Core must remain storage- and provider-independent.
 - **Alternatives considered:** Provider IDs on domain entities, null-only historical fields, a persisted validation flag, and a generic migration/package platform; rejected as lossy, stale, or premature.
 - **Consequences:** V1 remains a frozen migration/regression input. V2 is the current canonical package output. Deterministic imported-ID generation, real-source governance, field-level provenance, package registries, and broader migration orchestration remain deferred.
+
+## Phase 2 decisions
+
+### ADR-017 — Civil league date and season-oriented application session
+
+- **Status:** Accepted
+- **Date:** 2026-10-07
+- **Decision:** `DateOnly` is the authoritative simulated league date. Game tipoffs remain `DateTimeOffset`; a Game's schedule date is the civil date represented at its stored offset, not its UTC calendar date. Immutable `LeagueWorld` remains starting truth, while a season-oriented `LeagueSession` in the Core-only `NBATheAssociation.Application` assembly owns mutable runtime date and derived schedule indexes. The first session stops at its target Season's inclusive end. Automatic season rollover and explicit `SeasonPhase` records are deferred.
+- **Reason:** Day-based league progression must be deterministic and independent from wall-clock/Unity concerns, while tipoffs still need a precise instant and authored local offset. A separate application layer prevents mutable workflow state from contaminating Core facts or Data persistence.
+- **Alternatives considered:** Use `DateTimeOffset` as the league clock, assign games by UTC date, mutate `LeagueWorld`, place workflows in Data/Core, automatically roll into later seasons, or introduce preseason/regular/postseason/offseason records immediately. These were rejected as ambiguous, incorrectly coupled, or premature for the first calendar slice.
+- **Consequences:** V1 does not recalculate venue time zones or daylight-saving rules; authored tipoff offsets are authoritative. Sessions can start before opening but cannot advance beyond Season end. Future offseason/rollover work must explicitly extend this boundary rather than relying on implicit transitions.
