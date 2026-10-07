@@ -15,3 +15,19 @@ saves/
 artifacts/
 results/
 
+# Local secrets and signing material. Commit sanitized examples only.
+.env
+.env.*
+!.env.example
+secrets/
+*.pfx
+*.p12
+
+# Generated diagnostics and local package/cache output.
+coverage/
+*.coverage
+*.coveragexml
+MemoryCaptures/
+Recordings/
+crash*.dmp
+.nuget/
