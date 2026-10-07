@@ -126,6 +126,7 @@ These do not block Slice 01 because those entities are excluded.
 
 ## Repository operations
 
+- **Resolved for the standalone foundation:** `main` plus risk-based short-lived topic branches, simple commit prefixes, selective future LFS, never-commit rules, and isolated GitHub recovery are documented and verified.
 - **IMPORTANT BUT NON-BLOCKING:** Should `main` branch protection wait for CI/contributors as recommended, or be enabled earlier?
 - **IMPORTANT BUT NON-BLOCKING:** What independent backup destination, owner, schedule, retention, and encryption policy will supplement GitHub?
 - **IMPORTANT BUT NON-BLOCKING until large assets arrive:** What GitHub LFS quota/budget and authorized external asset vault are available?

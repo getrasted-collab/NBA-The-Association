@@ -106,4 +106,22 @@ After Unity is explicitly created, extend this test to verify the exact editor r
 
 ## Latest verified result
 
-Pending the isolated GitHub recovery run for the repository-foundation baseline.
+**Passed on 2026-10-07.**
+
+- Tested GitHub commit: `865f6e7d998717f0f1281f9343ff9e759d0f827f`
+- Clone location: a unique directory beneath the Windows user temporary directory, outside the authoritative repository
+- Fresh clone status before restore: clean
+- Git: `2.55.0.windows.1`
+- .NET SDK: `10.0.302`
+- Restore: successful for all five projects
+- Build: successful, 0 warnings and 0 errors
+- Tests: 33 passed, 0 failed, 0 skipped
+- CLI validation smoke test: exit code 0 and `VALID`
+- Application project references: Core only
+- Fresh clone status after restore/build/test: clean; generated output was correctly ignored
+- Second restore used `--force --no-cache` with a newly created isolated `NUGET_PACKAGES` directory; build and all 33 tests passed again
+- Hidden working-copy dependencies found: none
+
+The standalone process still requires the documented Git/network access and .NET 10 SDK. NuGet dependencies are public package dependencies restored by the standard toolchain, not files from the authoritative working copy.
+
+After recording this result, only the isolated temporary recovery directory was removed. The authoritative repository was not deleted, reset, or modified by the recovery procedure.

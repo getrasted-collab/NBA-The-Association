@@ -34,8 +34,9 @@ Percentages are completion estimates for the named setup area, not game-developm
 - GitHub reports `main` is not branch-protected.
 - Git LFS 3.7.1 is installed locally, but no patterns are tracked and no `.gitattributes` exists.
 - A local Git author identity is configured; no repository-local pull-rebase, merge-fast-forward, or line-ending override was observed, so behavior currently falls back to broader Git defaults.
-- No repository `README.md` exists.
-- The existing `.gitignore` excludes .NET output, common IDE state, Unity caches, build output, saves, artifacts, and results.
+- A root `README.md` documents prerequisites, architecture, layout, restore/build/test, and CLI commands.
+- The reviewed `.gitignore` excludes .NET output, common IDE state, Unity caches, build output, saves, artifacts, results, local secrets/signing material, coverage, captures, and local package caches without ignoring Unity `.meta` files.
+- The standalone recovery procedure passed against GitHub commit `865f6e7d998717f0f1281f9343ff9e759d0f827f`, including an isolated no-cache NuGet restore.
 - No Unity project exists, by prior architectural decision.
 
 ### Working standalone architecture
@@ -69,9 +70,9 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 
 | Area | Estimated completion | Meaning |
 |---|---:|---|
-| Project Initialization | 10% | Standalone product and architecture exist; Unity-specific product/platform decisions and host do not. |
-| GitHub / Version Control | 40% | Repository, remote, main, history, and baseline ignore rules work; workflow, recovery, LFS, releases, and protections remain. |
-| Folder Architecture | 55% | Standalone layout is sound and in use; future Unity, source-assets, data, and build areas are designed but should not yet be created wholesale. |
+| Project Initialization | 15% | Standalone product, architecture, onboarding, and reproducible setup exist; Unity-specific product/platform decisions and host do not. |
+| GitHub / Version Control | 75% | Repository, main, workflow, policies, ignore rules, and isolated recovery are proven; independent backup, CI/protection, LFS activation, and releases remain. |
+| Folder Architecture | 60% | Standalone layout and onboarding are sound; future Unity, source-assets, data, and build areas remain deliberately uncreated. |
 
 ## 2. Checklist status
 
@@ -110,27 +111,27 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 | GitHub repository | **DONE** | Public repository exists and is connected. |
 | Default branch | **DONE** | GitHub and local repository use `main`. |
 | Main branch history/push | **DONE** | Implemented slices are committed and pushed. |
-| `.gitignore` | **PARTIALLY DONE** | Good baseline exists; secrets, Unity crash/coverage/package artifacts, raw-data, and source-asset export policy need reviewed additions when applicable. |
+| `.gitignore` | **DONE** | Reviewed for the current standalone scope with future Unity caches retained; review again against the actual Unity project. |
 | Git LFS installation | **DONE** | Installed locally. This is not the same as enabling it for the repository. |
-| Git LFS policy | **READY TO DO NOW** | Policy is defined below; activation waits for first qualifying asset. |
+| Git LFS policy | **DONE** | Selective normal-Git/LFS/external/generated policy is documented; activation waits for first qualifying asset. |
 | Git LFS repository configuration | **DEFER UNTIL LATER** | No qualifying tracked binary assets exist. Do not add speculative patterns yet. |
-| Branch strategy | **READY TO DO NOW** | Adopt `main` plus short-lived topic branches when risk warrants. |
+| Branch strategy | **DONE** | `main` plus short-lived topic branches; no `develop` branch for now. |
 | Development branch | **DEFER UNTIL LATER** | Not justified for a primarily solo project with no concurrent release train. |
-| Feature/fix/data branch conventions | **READY TO DO NOW** | Conventions are defined below; branches are created only for actual work. |
-| Commit conventions | **READY TO DO NOW** | Simple type prefixes are defined below. |
-| Pull-request conventions | **READY TO DO NOW** | Risk-based solo/contributor policy is defined below. |
-| Merge strategy | **READY TO DO NOW** | Prefer squash for reviewed topic branches; direct logical commits remain acceptable for small solo work. |
+| Feature/fix/data branch conventions | **DONE** | Conventions are documented; branches are created only for actual work. |
+| Commit conventions | **DONE** | Simple type prefixes and logical-commit guidance are documented. |
+| Pull-request conventions | **DONE** | Risk-based solo/contributor policy is documented. |
+| Merge strategy | **DONE** | Squash versus preserved-history guidance is documented. |
 | Main branch protection | **PARTIALLY DONE** | No protection currently exists; decide when contributors/CI justify enforcement. |
-| Release/tagging strategy | **READY TO DO NOW** | Future policy is defined; no current release is implied. |
-| Version-number strategy | **READY TO DO NOW** | Future SemVer-compatible stages are defined below. |
+| Release/tagging strategy | **DONE** | Future policy is documented; no current release is implied. |
+| Version-number strategy | **DONE** | Future SemVer-compatible stages are documented. |
 | Backup strategy | **PARTIALLY DONE** | GitHub is one remote copy; independent backup and asset/data backup procedures do not exist. |
-| Recovery procedure | **READY TO DO NOW** | Safe isolated procedure is defined below. |
-| Fresh-clone standalone recovery test | **READY TO DO NOW** | Can be run now in a separate temporary directory without touching the working copy. |
+| Recovery procedure | **DONE** | Safe isolated procedure and failure handling are documented. |
+| Fresh-clone standalone recovery test | **DONE** | GitHub clone, isolated restore, build, 33 tests, CLI, references, and clean state passed. |
 | Fresh-clone Unity recovery test | **DEFER UNTIL UNITY** | Requires Unity project/version/packages/assets. |
-| Never-commit policy | **READY TO DO NOW** | Explicit policy is defined below. |
-| Large-asset policy | **READY TO DO NOW** | Source/export/LFS decision rules are defined below. |
-| Generated-file policy | **READY TO DO NOW** | Generated outputs stay ignored unless a reviewed artifact is intentionally released elsewhere. |
-| Secrets policy | **READY TO DO NOW** | Never commit secrets; use environment/local secret stores and documented variable names only. |
+| Never-commit policy | **DONE** | Explicit policy is documented in `GIT_WORKFLOW.md`. |
+| Large-asset policy | **DONE** | Source/export/LFS/external/generated decision rules are documented. |
+| Generated-file policy | **DONE** | Generated outputs remain ignored unless deliberately released outside normal source history. |
+| Secrets policy | **DONE** | Never-commit and incident-response guidance is documented; ignore rules cover local secret files. |
 
 ### Folder Architecture
 
@@ -142,7 +143,7 @@ This architecture must be preserved. Unity will be a consumer/host, not a replac
 | `docs/` | **DONE** | Architecture, decisions, questions, roadmap, and reports exist. |
 | `plans/` | **DONE** | Approved and historical implementation plans exist. |
 | Root solution | **DONE** | `NBATheAssociation.slnx` builds all current projects. |
-| Root README | **READY TO DO NOW** | Missing; should document prerequisites, restore/build/test, layout, and contribution basics. |
+| Root README | **DONE** | Prerequisites, architecture, layout, exact commands, CLI, and baseline are documented and recovery-tested. |
 | Future Simulation project location | **READY TO DO NOW** | Reserved conceptually under `src/`; do not create until simulation is approved. |
 | `data/` | **DEFER UNTIL LATER** | Create only when canonical non-test packages or controlled authoring data exist. |
 | `source-assets/` | **DEFER UNTIL UNITY** | Create with the first approved source-art workflow/assets, not empty taxonomy. |
@@ -637,7 +638,7 @@ This milestone validates repository recovery, not backups alone. It should be re
 
 ## 11. Dependency-ordered milestones
 
-### Foundation A — Repository onboarding and Git standards
+### Foundation A — Repository onboarding and Git standards — **DONE**
 
 - **Prerequisites:** current repository and owner acceptance of this plan.
 - **Tasks:** create root README; record .NET prerequisite/build/test/CLI commands; adopt commit/branch/PR guidance; refine `.gitignore` only with reviewed applicable patterns; document secret policy.
@@ -647,7 +648,7 @@ This milestone validates repository recovery, not backups alone. It should be re
 - **Codex autonomous:** yes for README/ignore/documentation; no for enabling account-level rules without owner direction.
 - **Owner decision:** whether to enable branch protection now; recommendation is wait until CI/contributors.
 
-### Foundation B — Standalone recovery proof
+### Foundation B — Standalone recovery proof — **DONE**
 
 - **Prerequisites:** Foundation A README commands.
 - **Tasks:** fresh isolated clone, restore, build, 33+ tests, CLI smoke test; document result.
@@ -731,12 +732,10 @@ This milestone validates repository recovery, not backups alone. It should be re
 
 Without Unity or new product decisions, Codex can safely:
 
-1. create a concise root `README.md` with prerequisites, architecture, restore/build/test/CLI commands, and scope;
-2. run and document the isolated standalone recovery test in a separate temporary directory;
-3. review and narrowly harden `.gitignore` for secrets and currently relevant generated artifacts;
-4. add a lightweight PR template only if the owner wants PRs now;
-5. inspect GitHub settings and recommend future branch protection/CI without enabling them;
-6. create a backup/recovery operations checklist once the owner selects an independent backup location.
+1. add a lightweight PR template only if the owner wants PRs now;
+2. inspect GitHub settings and recommend future branch protection/CI without enabling them;
+3. create an independent backup operations checklist once the owner selects its destination;
+4. repeat the isolated recovery test after major dependency/tooling changes.
 
 Do not create speculative branches, LFS patterns, empty asset trees, or Unity settings as substitutes for real work.
 
@@ -783,4 +782,4 @@ Until Unity is authorized, completing items 1–5 constitutes the **Standalone R
 
 ## Recommended next Project Foundation task
 
-Create the root README and immediately use it to run the safe isolated standalone recovery test. This provides more practical risk reduction than creating branches, enabling LFS without assets, or making premature Unity decisions.
+Choose an independent encrypted backup destination, owner, frequency, and retention policy, then document and test a repository backup/restore separate from GitHub. Do not enable LFS or create Unity merely to advance checklist status.

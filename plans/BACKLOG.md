@@ -1,5 +1,14 @@
 # Master Backlog
 
+## Project Foundation Operations
+
+- [x] Create root onboarding README with exact standalone commands.
+- [x] Establish Git/branch/commit/PR/LFS/never-commit policies.
+- [x] Review current `.gitignore` without hiding Unity `.meta` or source data broadly.
+- [x] Pass isolated GitHub clone, no-cache restore, build, 33-test, CLI, and dependency-boundary recovery proof.
+- [ ] Select and test an independent backup destination in addition to GitHub.
+- [ ] Resolve Unity bootstrap product/technical decisions before creating Unity.
+
 ## Phase 1 — Data Foundation
 
 - [x] Approve Data Foundation V1 architecture.
